@@ -1,54 +1,152 @@
-<?php
-include 'connect_db.php';
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="mystyle.css">
+</head>
+<style>
+   
+   html,body {
+  padding:0;
+  margin:0;
+  height:100%;
+  min-height:100%;
+ }
 
-
-
-$sql = 'SELECT * FROM bin';
-         
-$query = mysqli_query($connection, $sql);
- 
-if (!$query) {
-    die ('SQL Error: ' . mysqli_error($connection));
+.quarter{
+  width:25%;
+  height:100%;
+  float:left;
 }
- 
-echo '<html>
-		<head>
-		<meta http-equiv="refresh" content="5" >
-			<title>status view</title>
-			<style>
-				body {
-					font-family: "segoe ui";
-					background-color: #F0F8FF;
-					
-					}
-				h1 {
-					color: blue;
-					padding: 15px 10px;
-					text-align:center;
-					}
-				table {
-					margin:auto;
-					margin-top: 15px;
-					border-collapse: collapse;
-				}
-				th, td {
-					border: 1px solid black;
-					padding: 5px 10px;
-				}
-				th {
-					background-color: #1A5276;
-				}
-				td{
-					text-align: center;
-					background-color:white;
-					color:black;
-				}
-			</style>
-		<head>
-		<body>
-		<h1 style="background-color:#1A5276;"><p style="color:black;">IOT AUTONOMOUS GARBAGE/PACKAGE CARRIER SYSTEM</p></h1>
-		<div style="width: 50%; float:left">
-		<h1> Garbage Bin: </h1>
+.contents{
+  height:50%;
+  width:100%;
+}
+   
+</style>
+<body style="overflow-x:hidden" >
+
+<?php 
+	include 'xtra.php';
+	?>
+<header > <center>
+    <img src="gvp.png" width="100" height="100" style="float:left; margin-left:1%; margin-top:1%;visibility:show">
+  <h1 color="#F9EBEA" ><i font-size="25px" style="float:center; text-align:left;margin-left:-10%;" >IOT-AUTONOMOUS GARBAGE / PACKAGE CARRIER SYSTEM</i></h1></center>
+	<p style="float:right; text-align:right;margin-right:10%; margin-top:-1% ;color:#F1C40F  ;">--TCS REMOTE INTERNSHIP PROJECT<p>
+	<img src="logoo.jpg" width="100" height="100" style="float:right; margin-right:-28%; margin-top:-5%;visibility:show">
+</header>
+<br>
+<br>
+
+<div class="contents">
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA; margin:auto;">
+
+<span style="height:20%; width: 200px; font-size:20px;"> BIN ID&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[0][0];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN STATUS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[0][1];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LEVEL&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[0][2];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LOCATION&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[0][3];?></span><br>
+
+<?php if($bin[0][3]==$bot[0][3])
+{
+	echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;visibility:show">';
+	}
+	else
+	{
+		echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;display: none;" ">';
+		}
+?>
+</div>
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<div class="container" style="float:left; margin-left:15%; margin-top:5%;visibility:show">
+<div class="progress vertical">
+  <div class="progress-bar progress-bar-<?php echo level($bin[0][2]);?>"  role="progressbar"  aria-valuemax="32" style="width: <?php echo $bin[0][2]; ?>%;" >
+  </div> 
+  </div>
+</div>
+
+</div>
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<span style="height:20%; width: 200px; font-size:20px;"> BIN ID&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[1][0];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN STATUS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[1][1];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LEVEL&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[1][2];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LOCATION&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[1][3];?></span><br>
+<?php if($bin[1][3]==$bot[0][3])
+{
+	echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;visibility:show">';
+	}
+	else
+	{
+		echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;display: none;" ">';
+		}
+?>
+</div>
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<div class="container" style="float:left; margin-left:15%; margin-top:5%;visibility:show">
+<div class="progress vertical">
+  <div class="progress-bar progress-bar-<?php echo level($bin[1][2]);?>" role="progressbar"  aria-valuemax="32" style="width: <?php echo $bin[1][2]?>%; float:center;">
+  </div> 
+  </div>
+</div>
+</div>
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<span style="height:20%; width: 200px; font-size:20px;"> BIN ID&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[2][0];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN STATUS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[2][1];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LEVEL&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[2][2];?></span><br>
+<span style="height:20%; width: 200px; font-size:20px;"> BIN LOCATION&&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[2][3];?></span><br>
+<?php if($bin[2][3]==$bot[0][3])
+{
+	echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;visibility:show">';
+	}
+	else
+	{
+		echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;display: none;" ">';
+		}
+?>
+</div>
+
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<div class="container" style="float:left; margin-left:15%; margin-top:5%;visibility:show">
+<div class="progress vertical">
+  <div class="progress-bar progress-bar-<?php echo level($bin[2][2]);?>" role="progressbar"  aria-valuemax="32" style="width: <?php echo $bin[2][2];?>%; float:center;">
+  </div> 
+  </div>
+</div>
+</div>
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<span > BIN ID&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[3][0];?></span><br>
+<span > BIN STATUS&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[3][1];?></span><br>
+<span > BIN LEVEL&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[3][2];?></span><br>
+<span > BIN LOCATION&ensp;&ensp;&ensp;&ensp;&ensp;<?php echo $bin[3][3];?></span><br>
+<?php if($bin[3][3]==$bot[0][3])
+{
+	echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;visibility:show">';
+	}
+	else
+	{
+		echo '<img src="robot.png" width="150" height="150" style="float:center; margin-left:15%; margin-top:10%;display: none;" ">';
+		}
+?>
+</div>
+
+
+<div class="col-md-6 quarter" style="background-color:#F9EBEA;">
+<div class="container" style="float:left; margin-left:15%; margin-top:5%;visibility:show">
+<div class="progress vertical">
+  <div class="progress-bar progress-bar-<?php echo level($bin[3][2]);?>" role="progressbar"  aria-valuemax="32" style="width: <?php echo $bin[3][2];?>%; float:center;">
+  </div> 
+  </div>
+</div>
+</div>
+
+<div class="row">
+  <div class="column" style="background-color:#F9EBEA;">
+    <h2>GARBAGE BIN </h2>
 		<table>
         <thead>
             <tr>
@@ -59,36 +157,25 @@ echo '<html>
                
             </tr>
         </thead>
-        <tbody>';
-         
-while ($row = mysqli_fetch_assoc($query))
-{
-    echo '<tr>
-            <td>'.$row['bin_id'].'</td>';
-		if($row['bin_status']==1)
-		{ echo '<td style="color:red;"><b>Filled</b></td>';}
-		else{
-			echo' <td style="color:green;"><b>Not filled</b></td>';
-		}
-	echo'
-            <td>'.$row['bin_level'].'</td>
-			<td>'.$row['bin_location'].'</td>
-        </tr>';
-}
+        <tbody>
+   <?php
 
-echo '
-    </tbody>
-</table></div>';
-$sql = 'SELECT * FROM bot';
-         
-$query = mysqli_query($connection, $sql);
+for ($row = 0; $row < $n; $row++) {
+echo '</tr>';
+  for ($col = 0; $col < 4; $col++) {
+  
+  echo "<td>".$bin[$row][$col]."</td>";
  
-if (!$query) {
-    die ('SQL Error: ' . mysqli_error($connection));
-}echo'
-<div style="width: 50%; float:right">
-<h1> Garbage Collector: </h1>
-<table >
+  }
+echo '<tr>';
+}
+?>
+</tbody>
+</table>
+  </div>
+  <div class="column" style="background-color:#F9EBEA;">
+    <h2 font-size="20px">GARBAGE COLLECTOR </h2>
+	<table >
         <thead>
             <tr>
                 <th>bot_id</th>
@@ -98,26 +185,31 @@ if (!$query) {
                
             </tr>
         </thead>
-        <tbody>';
-         
-while ($row = mysqli_fetch_assoc($query))
-{
-    echo '<tr>
-            <td>'.$row['bot_id'].'</td>
-            <td>'.$row['bot_status'].'</td>
-            <td>'.$row['bot_level'].'</td>
-			<td>'.$row['bot_location'].'</td>
-        </tr>';
-}
+        <tbody>
+    <?php
 
-echo '
-    </tbody>
-</table></div>';
-echo '
-</body>
-</html>';
-
+for ($row2 = 0; $row2 < $i; $row2++) {
+echo '</tr>';
+  for ($col2 = 0; $col2 < 4; $col2++) {
+  
+  echo "<td>".$bot[$row2][$col2]."</td>";
  
-
+  }
+echo '<tr>';
+}
 mysqli_close($connection);
-?>
+	?>
+	</tbody>
+</table>;
+  </div>
+</div>
+
+
+
+
+</div>
+
+</div>
+<footer color:black><center>@TCS REMOTE INTERNSHIP</footer>
+</body>
+</html>
