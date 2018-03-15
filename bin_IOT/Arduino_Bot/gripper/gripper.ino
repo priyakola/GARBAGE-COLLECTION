@@ -1,4 +1,3 @@
-
 #include <Servo.h>
 void grip(void);
 void ungrip(void);

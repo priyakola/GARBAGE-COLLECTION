@@ -9,6 +9,7 @@ html body {
   background-color:#F9EBEA;
  
 }
+ 
 body{background-color:#F9EBEA;}
 html body .flex-container .contents {
   width: 100%;
@@ -27,7 +28,8 @@ header {
 	color: #F9EBEA;
 }
 footer{
-	border-radius: 1px;
+	color:#F9EBEA;
+	border-radius: 20px;
 }
 
 .flex-container {
@@ -43,8 +45,8 @@ footer{
     -webkit-flex: 1 100%;
     flex: 1 100%;
 }
-header {background: #641E16    ;}
-footer {background: #641E16    ;}
+header {background: #641E16 ;}
+footer {background: #641E16 ;}
 
 * {
     box-sizing: border-box;

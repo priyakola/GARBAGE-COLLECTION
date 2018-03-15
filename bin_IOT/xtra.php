@@ -17,18 +17,23 @@ while ($row = mysqli_fetch_assoc($query))
 	
 	$bin[$i][0] = $row['bin_id'];
 	$bin[$i][1] = $row['bin_status'];
-	$bin[$i][2] = round($row['bin_level'] * 10/3,2);
+	$bin[$i][2] = $row['bin_level'];
+	$value[$i][2]=round($row['bin_level'] * 10,2);
 	$bin[$i][3] = $row['bin_location'];
 		$i++;
 	
 }
+
 for ($row = 0; $row < $i; $row++) {
   //echo "<p><b>bin $row</b></p>";
   //echo "<ul>";
   for ($col = 0; $col < 4; $col++) {
     //echo "<li>".$bin[$row][$col]."</li>";
+	
+		
   }
   //echo "</ul>";
+  
 }
 $sql2 = 'SELECT * FROM bot';    
 $query2 = mysqli_query($connection, $sql2);
@@ -50,6 +55,7 @@ while ($row2 = mysqli_fetch_array($query2))
 		$i++;
 		
 }
+
 //echo $i;
 for ($row2 = 0; $row2 < $i; $row2++) {
  // echo "<p><b>bot $row2</b></p>";
@@ -59,7 +65,10 @@ for ($row2 = 0; $row2 < $i; $row2++) {
   }
 
 }
+
 	$x=0;
+	$a=0;
+	$b=0;
 function level($x ){
 	if( $x <=25 ){ return 'success';
 }
@@ -70,5 +79,26 @@ if( $x >50 && $x<=75  ){ return 'warning';
 if( $x >75){ return 'danger';
 }
 }
+$y=0;
+$z=0;
+function status($y ){
+	if( $y ==0 )
+	{ 
+	return 'Not Filled';
+}
+if( $y==1 ){ 
+return 'Filled';
+}
 
+}
+function color($z ){
+	if( $z ==0 )
+	{ 
+	return 'green';
+}
+if( $z==1 ){ 
+return 'red';
+}
+
+}
 ?>

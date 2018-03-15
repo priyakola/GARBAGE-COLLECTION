@@ -18,9 +18,9 @@ const char* password = "87654321";
 unsigned long update_db_interval = 1000;
 //database update interval - 1 second
 
-uint8_t bin_ID = 1;//ID of bin
+uint8_t bin_ID = 2;//ID of bin
 uint8_t bin_status = 0;
-uint8_t bin_location = 1;
+uint8_t bin_location = 2;
 uint8_t bin_level = 29;
 
 
@@ -28,7 +28,7 @@ uint8_t bin_level = 29;
 
 unsigned long present_ms = 0, last_ms = 0, update_db, time_ms = 0;
 
-String server = "http://192.168.43.195/"; //Ip address of server
+String server = "http://192.168.43.69/"; //Ip address of server
 int port = 80; //default http port
 String response;
 String ard_data;
